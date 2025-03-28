@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Comprehensive Color Management Study Guide</title>
+  <!-- MathJax configuration and script -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <style>
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    h1, h2, h3 {
+      margin-bottom: 10px;
+    }
+    p {
+      margin-bottom: 15px;
+    }
+    .tabs {
+      display: flex;
+      margin-bottom: 20px;
+    }
+    .tab {
+      padding: 10px 20px;
+      margin-right: 5px;
+      cursor: pointer;
+      background-color: #333;
+      border-radius: 5px;
+    }
+    .tab.active {
+      background-color: #555;
+    }
+    .section {
+      display: none;
+      margin-top: 20px;
+    }
+    .section.active {
+      display: block;
+    }
+    .study-card {
+      background-color: #222;
+      padding: 15px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+    }
+    .study-card h3 {
+      margin-top: 0;
+    }
+    .answer {
+      display: none;
+      margin-top: 10px;
+      background-color: #111;
+      padding: 10px;
+      border-radius: 5px;
+    }
+    button {
+      padding: 8px 12px;
+      margin: 5px 0;
+      border: none;
+      border-radius: 4px;
+      background-color: #444;
+      color: #fff;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #666;
+    }
+    .bordered {
+      border: 2px solid #fff;
+      padding: 10px;
+      margin-top: 20px;
+    }
+    .quiz-question {
+      background-color: #222;
+      padding: 15px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+    }
+    .option {
+      margin: 5px 0;
+      padding: 5px;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+    .option input {
+      margin-right: 8px;
+    }
+    .correct {
+      background-color: #006400;
+    }
+    .incorrect {
+      background-color: #8B0000;
+    }
+    .diagram {
+      margin: 20px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Comprehensive Color Management Study Guide</h1>
+    <p>This interactive website is meticulously crafted to serve as an efficacious study aid for your upcoming test. It covers a breadth of topics—from the intricacies of color management workflows, ICC and CIELAB definitions, and industry standards, to the equations governing tristimulus calculations, chromaticity coordinates, rendering intents, paper gamuts, and display technologies (LCD, CRT, OLED, AMOLED). Explore the detailed study cards and test your knowledge with the quiz mode. Use the diagrams section for visual representations of key processes.</p>
+    
+    <!-- Tabs -->
+    <div class="tabs">
+      <div class="tab active" data-target="studyMode">Study Mode</div>
+      <div class="tab" data-target="quizMode">Quiz Mode</div>
+      <div class="tab" data-target="diagramsSection">Diagrams</div>
+    </div>
+    
+    <!-- Study Mode Section -->
+    <div id="studyMode" class="section active">
+      <h2>Study Mode</h2>
+      <div id="studyCards">
+        <!-- 35 Study Cards with exhaustive responses -->
+        <div class="study-card">
+          <h3>1. What is the fundamental purpose of a color management system in digital imaging workflows?</h3>
+          <button onclick="toggleAnswer(this)">Show/Hide Answer</button>
+          <div class="answer">
+            <p>A color management system (CMS) is designed to ensure that colors remain consistent and accurate as images move between devices—from capture (cameras and scanners) to display (monitors) and output (printers). By using calibrated device profiles and standardized conversion algorithms, a CMS minimizes discrepancies due to differing device characteristics, thus safeguarding the integrity of the original color data.</p>
+          </div>
+        </div>
+        <div class="study-card">
+          <h3>2. Explain the significance of the CIE chromaticity diagram and its role in color science.</h3>
+          <button onclick="toggleAnswer(this)">Show/Hide Answer</button>
+          <div class="answer">
+            <p>The CIE chromaticity diagram provides a two-dimensional representation of colors independent of luminance, mapping the human visual response onto a coordinate system. It is essential for visualizing the gamut (range) of colors that a device or color space can reproduce and for determining dominant wavelengths. The diagram is pivotal in analyzing color shifts, understanding saturation, and ensuring accurate color reproduction across various lighting conditions.</p>
+          </div>
+        </div>
+        <div class="study-card">
+          <h3>3. Describe the process of calculating tristimulus values and converting them to chromaticity coordinates.</h3>
+          <button onclick="toggleAnswer(this)">Show/Hide Answer</button>
+          <div class="answer">
+            <p>Tristimulus values (X, Y, Z) are calculated by integrating the product of the spectral power distribution of the light source, the reflectance of the sample, and the color matching functions of the standard observer over the visible spectrum. They are then normalized to obtain chromaticity coordinates using the equations:</p>
+            <p>
+              $$ x = \\frac{X}{X+Y+Z}, \\quad y = \\frac{Y}{X+Y+Z}, \\quad z = \\frac{Z}{X+Y+Z} $$
+            </p>
+            <p>This conversion allows us to plot colors on the CIE diagram, providing insights into color relationships and device capabilities.</p>
+          </div>
+        </div>
+        <div class="study-card">
+          <h3>4. What are the principal components of a color management module, and how do they interact within a digital workflow?</h3>
+          <button onclick="toggleAnswer(this)">Show/Hide Answer</button>
+          <div class="answer">
+            <p>A color management module typically comprises input profiles (for capture devices), display profiles (for monitors), and output profiles (for printers). Each profile characterizes how a device interprets or reproduces color. The module uses conversion algorithms to translate color data from one device-dependent space to a device-independent space, thereby ensuring that the original image’s color fidelity is maintained throughout the workflow.</p>
+          </div>
+        </div>
+        <div class="study-card">
+          <h3>5. Define the acronyms ICC and CIELAB, and explain their relevance in color science.</h3>
+          <button onclick="toggleAnswer(this)">Show/Hide Answer</button>
+          <div class="answer">
+            <p><strong>ICC</strong> stands for <strong>International Color Consortium</strong>, which establishes standards for creating device profiles to achieve uniform color reproduction. <strong>CIELAB</strong> is a color space defined by the International Commission on Illumination (CIE) that uses the parameters L* (lightness), a* (green–red), and b* (blue–yellow) to model human color perception. Together, they form the backbone of modern color management by ensuring consistency across various devices and media.</p>
+          </div>
+        </div>
+        <div class="study-card">
+          <h3>6. Explain the equations used to compute tristimulus values, including the role of spectral power distribution and standard observer functions.</h3>
+          <button onclick="toggleAnswer(this)">Show/Hide Answer</button>
+          <div class="answer">
+            <p>The tristimulus values are computed using equations of the form:</p>
+            <p>
+              $$ X = k \\sum S(\\lambda)R(\\lambda)\\bar{x}(\\lambda)\\Delta\\lambda, \\quad Y = k \\sum S(\\lambda)R(\\lambda)\\bar{y}(\\lambda)\\Delta\\lambda, \\quad Z = k \\sum S(\\lambda)R(\\lambda)\\bar{z}(\\lambda)\\Delta\\lambda $$
+            </p>
+            <p>Here, <em>S(λ)</em> represents the spectral power distribution of the light source, <em>R(λ)</em> is the sample’s reflectance, and <em>\\(\\bar{x}(\\lambda), \\bar{y}(\\lambda), \\bar{z}(\\lambda)\\)</em> are the standard observer functions. The constant <em>k</em> normalizes the results. These computed values provide the basis for determining chromaticity coordinates and understanding color behavior.</p>
+          </div>
+        </div>
+        <div class="study-card">
+          <h3>7. Discuss the importance of industry standards in color management, with reference to sRGB, Adobe RGB, and ProPhoto RGB.</h3>
+          <button onclick="toggleAnswer(this)">Show/Hide Answer</button>
+          <div class="answer">
+            <p>Industry standards such as sRGB, Adobe RGB, and ProPhoto RGB define specific color gamuts that ensure interoperability across devices. <strong>sRGB</strong> is used for web and consumer applications due to its limited gamut, <strong>Adobe RGB</strong> provides a wider range for professional printing, and <strong>ProPhoto RGB</strong> offers the broadest gamut for high-end image processing. Adhering to these standards is essential for predictable and consistent color reproduction.</p>
+          </div>
+        </div>
+        <div class="study-card">
+          <h3>8. How do paper gamuts influence the final output in printing processes, and what challenges do they present?</h3>
+          <button onclick="toggleAnswer(this)">Show/Hide Answer</button>
+          <div class="answer">
+            <p>Paper gamuts define the range of colors that a printing substrate can reproduce. Due to inherent limitations in paper and ink interactions, the gamut is typically smaller than that of digital devices. This discrepancy requires careful adjustment and soft-proofing to ensure that printed outputs retain acceptable color fidelity despite the limitations.</p>
+          </div>
+        </div>
+        <div class="study-card">
+          <h3>9. Compare and contrast LCD, CRT, OLED, and AMOLED screens in terms of color reproduction and gamut.</h3>
+          <button onclick="toggleAnswer(this)">Show/Hide Answer</button>
+          <div class="answer">
+            <p>CRT screens offer excellent contrast and deep blacks but are bulky and energy inefficient. LCDs provide sharp images with lower power consumption but often suffer from limited viewing angles. OLED displays, using self-emissive pixels, deliver vibrant colors and wider gamuts, while AMOLED technology improves on OLED by offering enhanced energy efficiency and even richer colors. Each technology has trade-offs between color accuracy, contrast, and overall performance.</p>
+          </div>
+        </div>
+        <div class="study-card">
+          <h3>10. What constitutes a capture ICC profile and why is it essential in digital imaging?</h3>
+          <button onclick="toggleAnswer(this)">Show/Hide Answer</button>
+          <div class="answer">
+            <p>A capture ICC profile characterizes how a device such as a camera or scanner records colors. It converts raw sensor data into a standardized color space, ensuring that the colors in the captured image closely represent those of the original scene. This is crucial for accurate color reproduction in subsequent editing and output processes.</p>
+          </div>
+        </div>
+        <div class="study-card">
+          <h3>11. Elucidate the process and importance of soft-proofing in the pre-print phase.</h3>
+          <button onclick="toggleAnswer(this)">Show/Hide Answer</button>
+          <div class="answer">
+            <p>Soft-proofing simulates the final printed output on a calibrated monitor by applying the output device's ICC profile to the image. This preview allows you to adjust colors, contrast, and saturation before printing, ensuring that the final output closely matches the intended appearance and compensates for any device limitations.</p>
+          </div>
+        </div>
+        <div class="study-card">
+          <h3>12. Describe the concept of chromaticity coordinates and their application in visualizing color.</h3>
+          <button onclick="toggleAnswer(this)">Show/Hide Answer</button>
+          <div class="answer">
+            <p>Chromaticity coordinates, defined as <em>$$ x = \\frac{X}{X+Y+Z} $$</em> and <em>$$ y = \\frac{Y}{X+Y+Z} $$</em>, represent the hue and saturation of a color independent of brightness. They allow colors to be plotted on the CIE chromaticity diagram, facilitating the analysis of color relationships and the comparison of device gamuts.</p>
+          </div>
+        </div>
+        <div class="study-card">
+          <h3>13. What are the key differences between rendering intents such as Perceptual, Saturation, Relative Colorimetric, and Absolute Colorimetric?</h3>
+          <button onclick="toggleAnswer(this)">Show/Hide Answer</button>
+          <div class="answer">
+            <p>Rendering intents determine how colors that fall outside the destination gamut are handled during conversion. <strong>Perceptual</strong> adjusts all colors to maintain overall visual harmony; <strong>Saturation</strong> preserves vividness by prioritizing saturated colors; <strong>Relative Colorimetric</strong> clips out-of-gamut colors while retaining in-gamut values; and <strong>Absolute Colorimetric</strong> attempts an exact match, including the white point, which is useful for proofing.</p>
+          </div>
+        </div>
+        <div class="study-card">
+          <h3>14. How is the $$ \\Delta E $$ (Delta E) metric used to quantify color differences, and what is its significance?</h3>
+          <button onclick="toggleAnswer(this)">Show/Hide Answer</button>
+          <div class="answer">
+            <p>$$ \\Delta E $$ quantifies the perceptual difference between two colors in the CIELAB space. A low value indicates minimal difference, while a high value signifies a noticeable discrepancy. This metric is fundamental for quality control in color reproduction and helps in assessing the effectiveness of color correction processes.</p>
+          </div>
+        </div>
+        <div class="study-card">
+          <h3>15. Explain the significance of hue angle in CIELAB and how it is interpreted in practical applications.</h3>
+          <button onclick="toggleAnswer(this)">Show/Hide Answer</button>
+          <div class="answer">
+            <p>The hue angle, calculated using the arctangent of $$ \\frac{b^*}{a^*} $$, represents the direction of a color on the a*-b* plane. It indicates the dominant hue and is used to diagnose color shifts during editing, making it essential for maintaining accurate color relationships.</p>
+          </div>
+        </div>
+        <div class="study-card">
+          <h3>16. What are the standard equations for converting between RGB and CIELAB, and why are these conversions important?</h3>
+          <button onclick="toggleAnswer(this)">Show/Hide Answer</button>
+          <div class="answer">
+            <p>The conversion from RGB to CIELAB typically involves an intermediate step to the XYZ color space using a transformation matrix, followed by a non-linear transformation to obtain L*, a*, and b* values. These conversions are crucial because CIELAB is perceptually uniform, enabling more accurate measurement of color differences compared to the device-dependent RGB space.</p>
+          </div>
+        </div>
+        <div class="study-card">
+          <h3>17. Discuss the importance of monitor calibration in achieving accurate color reproduction.</h3>
+          <button onclick="toggleAnswer(this)">Show/Hide Answer</button>
+          <div class="answer">
+            <p>Monitor calibration adjusts brightness, contrast, and color balance to ensure that a display accurately reproduces colors. A properly calibrated monitor is essential for photo editing and soft-proofing, as it minimizes discrepancies between on-screen images and the final printed or published output.</p>
+          </div>
+        </div>
+        <div class="study-card">
+          <h3>18. What role do spectrophotometers play in creating accurate color profiles for devices and prints?</h3>
+          <button onclick="toggleAnswer(this)">Show/Hide Answer</button>
+          <div class="answer">
+            <p>Spectrophotometers measure the spectral power distribution of light, providing precise colorimetric data. This information is vital for generating accurate ICC profiles for scanners, cameras, and printers, ensuring that the colors captured or reproduced are faithful to the original source.</p>
+          </div>
+        </div>
+        <div class="study-card">
+          <h3>19. Define and differentiate between input profiles and output profiles in a color management system.</h3>
+          <button onclick="toggleAnswer(this)">Show/Hide Answer</button>
+          <div class="answer">
+            <p><strong>Input profiles</strong> describe how capture devices (e.g., scanners, cameras) record color, while <strong>output profiles</strong> define how printers and monitors reproduce that color. Together, they form a bridge between the device-dependent and device-independent color spaces, ensuring consistency throughout the imaging process.</p>
+          </div>
+        </div>
+        <div class="study-card">
+          <h3>20. How do various color spaces (sRGB, Adobe RGB, ProPhoto RGB) differ in terms of gamut and intended applications?</h3>
+          <button onclick="toggleAnswer(this)">Show/Hide Answer</button>
+          <div class="answer">
+            <p><strong>sRGB</strong> is used for web and consumer applications with a relatively limited gamut. <strong>Adobe RGB</strong> offers a wider gamut suitable for professional printing, while <strong>ProPhoto RGB</strong> provides the broadest gamut for high-end editing and archival purposes. Each is chosen based on the required balance between color fidelity and device compatibility.</p>
+          </div>
+        </div>
+        <div class="study-card">
+          <h3>21. What is the significance of using a black background in digital color presentations?</h3>
+          <button onclick="toggleAnswer(this)">Show/Hide Answer</button>
+          <div class="answer">
+            <p>A black background enhances contrast, making subtle differences in color more noticeable. This helps in accurately assessing hue, saturation, and brightness, which is particularly important during image editing and when evaluating color-critical work.</p>
+          </div>
+        </div>
+        <div class="study-card">
+          <h3>22. Illustrate the workflow for converting an image from a device-dependent color space to a device-independent color space.</h3>
+          <button onclick="toggleAnswer(this)">Show/Hide Answer</button>
+          <div class="answer">
+            <p>The workflow begins with capturing the image using a device-specific profile. The image data is then converted into a device-independent space (typically CIELAB) using standardized conversion equations. Finally, an appropriate output profile is applied to ensure that the final display or print matches the intended appearance. This process maintains color consistency across various devices.</p>
+          </div>
+        </div>
+        <div class="study-card">
+          <h3>23. Describe how color gamuts are represented on a CIE chromaticity diagram and why this representation is important.</h3>
+          <button onclick="toggleAnswer(this)">Show/Hide Answer</button>
+          <div class="answer">
+            <p>On the CIE chromaticity diagram, color gamuts appear as enclosed regions that delineate the range of colors reproducible by a device or within a color space. This visualization is crucial for comparing the capabilities of different devices and understanding the limitations of various color spaces.</p>
+          </div>
+        </div>
+        <div class="study-card">
+          <h3>24. What role do equations play in the calculation of CIELAB values, and how do they contribute to assessing color differences?</h3>
+          <button onclick="toggleAnswer(this)">Show/Hide Answer</button>
+          <div class="answer">
+            <p>Equations that convert tristimulus values to CIELAB values create a perceptually uniform space, enabling objective quantification of color differences (expressed as $$ \\Delta E $$). This facilitates precise adjustments in color correction and quality control by providing a numerical measure of color deviation.</p>
+          </div>
+        </div>
+        <div class="study-card">
+          <h3>25. Explain the interplay between hue, saturation, and brightness in digital color correction.</h3>
+          <button onclick="toggleAnswer(this)">Show/Hide Answer</button>
+          <div class="answer">
+            <p>Hue defines the type of color, saturation indicates its intensity, and brightness (or lightness) measures its luminance. During digital color correction, these three parameters are adjusted together to achieve a balanced, natural-looking image. The goal is to maintain the integrity of the original scene while compensating for device or environmental limitations.</p>
+          </div>
+        </div>
+        <div class="study-card">
+          <h3>26. How does the choice of rendering intent affect the outcome of color conversion?</h3>
+          <button onclick="toggleAnswer(this)">Show/Hide Answer</button>
+          <div class="answer">
+            <p>Rendering intents determine how colors that fall outside the target gamut are handled during conversion. For example, the Perceptual intent compresses the entire gamut to maintain relative color relationships, whereas the Relative Colorimetric intent clips out-of-gamut colors. The chosen intent directly influences saturation, hue accuracy, and the overall appearance of the final image.</p>
+          </div>
+        </div>
+        <div class="study-card">
+          <h3>27. What are the primary challenges in achieving accurate color reproduction across devices?</h3>
+          <button onclick="toggleAnswer(this)">Show/Hide Answer</button>
+          <div class="answer">
+            <p>Challenges include differences in device gamuts, variations in environmental lighting, inherent device limitations, and the subjective nature of human color perception. Accurate calibration, well-maintained profiles, and a thorough understanding of each device’s characteristics are necessary to overcome these challenges.</p>
+          </div>
+        </div>
+        <div class="study-card">
+          <h3>28. Discuss the impact of ambient lighting on color perception and the need for standardized viewing conditions.</h3>
+          <button onclick="toggleAnswer(this)">Show/Hide Answer</button>
+          <div class="answer">
+            <p>Ambient lighting can significantly alter the appearance of colors by affecting contrast and saturation. Standardized viewing conditions, which include controlled lighting and neutral backgrounds, are essential to ensure that color assessments are consistent and accurate, minimizing external influences.</p>
+          </div>
+        </div>
+        <div class="study-card">
+          <h3>29. What methodologies are employed to calibrate scanners versus monitors, and how do these processes differ?</h3>
+          <button onclick="toggleAnswer(this)">Show/Hide Answer</button>
+          <div class="answer">
+            <p>Monitor calibration typically involves using a colorimeter to adjust brightness, contrast, and color balance, while scanner calibration relies on scanning standardized targets (e.g., an IT8 target) to create an accurate input profile. Although both processes aim for color accuracy, they address different device characteristics—emissive displays versus reflective scanning mechanisms.</p>
+          </div>
+        </div>
+        <div class="study-card">
+          <h3>30. How do flowcharts and diagrams assist in clarifying complex color management processes?</h3>
+          <button onclick="toggleAnswer(this)">Show/Hide Answer</button>
+          <div class="answer">
+            <p>Flowcharts and diagrams provide visual summaries that outline each step in a process and illustrate the relationships between various components. They help simplify complex workflows, making it easier to understand the integration of capture, conversion, and output profiles in a color management system.</p>
+          </div>
+        </div>
+        <div class="study-card">
+          <h3>31. What are the benefits and limitations of soft-proofing in digital imaging?</h3>
+          <button onclick="toggleAnswer(this)">Show/Hide Answer</button>
+          <div class="answer">
+            <p>Soft-proofing allows you to simulate how an image will look when printed, enabling preemptive adjustments. Its benefits include the ability to identify out-of-gamut areas and fine-tune color reproduction; however, it cannot perfectly replicate the physical attributes of printed media, such as texture and reflectivity.</p>
+          </div>
+        </div>
+        <div class="study-card">
+          <h3>32. Describe the concept of chroma ratio and its role in evaluating color reproduction fidelity.</h3>
+          <button onclick="toggleAnswer(this)">Show/Hide Answer</button>
+          <div class="answer">
+            <p>The chroma ratio quantifies the difference in color saturation between the original image and its reproduction. It serves as a metric for assessing how accurately a device preserves the intensity of colors, highlighting any loss or exaggeration in saturation during the conversion or printing process.</p>
+          </div>
+        </div>
+        <div class="study-card">
+          <h3>33. How does converting an image to sRGB affect its color representation, and what compromises are involved?</h3>
+          <button onclick="toggleAnswer(this)">Show/Hide Answer</button>
+          <div class="answer">
+            <p>Converting an image to sRGB maps a wider gamut into a smaller, standardized color space. This ensures compatibility across most devices but may result in a loss of color vibrancy and saturation, as colors outside the sRGB gamut are compressed or clipped.</p>
+          </div>
+        </div>
+        <div class="study-card">
+          <h3>34. What are the critical equations used in calculating chromaticity and color difference, and how are they applied in practice?</h3>
+          <button onclick="toggleAnswer(this)">Show/Hide Answer</button>
+          <div class="answer">
+            <p>Key equations include the tristimulus formulas:</p>
+            <p>
+              $$ X = k \\sum S(\\lambda)R(\\lambda)\\bar{x}(\\lambda)\\Delta\\lambda $$
+              $$ Y = k \\sum S(\\lambda)R(\\lambda)\\bar{y}(\\lambda)\\Delta\\lambda $$
+              $$ Z = k \\sum S(\\lambda)R(\\lambda)\\bar{z}(\\lambda)\\Delta\\lambda $$
+            </p>
+            <p>and the chromaticity coordinate equations:</p>
+            <p>
+              $$ x = \\frac{X}{X+Y+Z}, \\quad y = \\frac{Y}{X+Y+Z} $$
+            </p>
+            <p>These formulas are applied to quantitatively compare colors and calculate the perceptual difference ($$ \\Delta E $$) between them.</p>
+          </div>
+        </div>
+        <div class="study-card">
+          <h3>35. Summarize the essential components and workflow of a robust digital color management system.</h3>
+          <button onclick="toggleAnswer(this)">Show/Hide Answer</button>
+          <div class="answer">
+            <p>A robust digital color management system integrates calibrated capture devices, accurate input profiles, precise conversion algorithms (to a device-independent space like CIELAB), and tailored output profiles. This comprehensive workflow ensures that images maintain consistent and accurate color reproduction from capture through to final output, regardless of device variability.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Quiz Mode Section -->
+    <div id="quizMode" class="section">
+      <h2>Quiz Mode</h2>
+      <div id="quizContainer">
+        <div id="quizQuestion" class="quiz-question"></div>
+        <div id="quizOptions"></div>
+        <div>
+          <button id="revealAnswerBtn" onclick="revealAnswer()">Reveal Answer</button>
+          <button id="nextQuestionBtn" onclick="nextQuestion()">Next Question</button>
+          <button id="skipQuestionBtn" onclick="skipQuestion()">Skip</button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Diagrams Section -->
+    <div id="diagramsSection" class="section">
+      <h2>Diagrams</h2>
+      <div class="diagram">
+        <h3>Color Management Workflow Flowchart</h3>
+        <svg width="600" height="200" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <marker id="arrow" markerWidth="10" markerHeight="10" refX="0" refY="3" orient="auto">
+              <path d="M0,0 L0,6 L9,3 z" fill="#fff"/>
+            </marker>
+          </defs>
+          <rect x="10" y="70" width="100" height="50" fill="#444" stroke="#fff" rx="5"/>
+          <text x="60" y="100" fill="#fff" text-anchor="middle" font-size="12">Capture</text>
+          <line x1="110" y1="95" x2="180" y2="95" stroke="#fff" marker-end="url(#arrow)"/>
+          <rect x="180" y="70" width="120" height="50" fill="#444" stroke="#fff" rx="5"/>
+          <text x="240" y="100" fill="#fff" text-anchor="middle" font-size="12">Input Profile</text>
+          <line x1="300" y1="95" x2="370" y2="95" stroke="#fff" marker-end="url(#arrow)"/>
+          <rect x="370" y="70" width="100" height="50" fill="#444" stroke="#fff" rx="5"/>
+          <text x="420" y="100" fill="#fff" text-anchor="middle" font-size="12">Editing</text>
+          <line x1="470" y1="95" x2="540" y2="95" stroke="#fff" marker-end="url(#arrow)"/>
+          <rect x="540" y="70" width="120" height="50" fill="#444" stroke="#fff" rx="5"/>
+          <text x="600" y="100" fill="#fff" text-anchor="middle" font-size="12">Output Profile</text>
+        </svg>
+      </div>
+    </div>
+    
+    <!-- Last Minute Prep Section -->
+    <div class="bordered">
+      <h2>Last Minute Prep</h2>
+      <p>This section consolidates the pivotal topics and equations essential for your test:</p>
+      <ul>
+        <li><strong>Tristimulus Equations:</strong>
+          <p>
+            $$ X = k \\sum S(\\lambda)R(\\lambda)\\bar{x}(\\lambda)\\Delta\\lambda, \\quad Y = k \\sum S(\\lambda)R(\\lambda)\\bar{y}(\\lambda)\\Delta\\lambda, \\quad Z = k \\sum S(\\lambda)R(\\lambda)\\bar{z}(\\lambda)\\Delta\\lambda $$
+          </p>
+        </li>
+        <li><strong>Chromaticity Coordinates:</strong>
+          <p>
+            $$ x = \\frac{X}{X+Y+Z}, \\quad y = \\frac{Y}{X+Y+Z}, \\quad z = \\frac{Z}{X+Y+Z} $$
+          </p>
+        </li>
+        <li><strong>CIELAB Conversions:</strong> Equations to derive \(L^*\), \(a^*\), \(b^*\) and to compute the color difference $$ \\Delta E $$ for quality control.</li>
+        <li><strong>Color Management Workflow:</strong> Integration of capture devices, input profiles, calibration, soft-proofing, and output profiling to maintain consistent color reproduction.</li>
+        <li><strong>Industry Standards:</strong> sRGB, Adobe RGB, ProPhoto RGB.</li>
+        <li><strong>Display Technologies:</strong> LCD, CRT, OLED, AMOLED.</li>
+        <li><strong>Rendering Intents:</strong> Perceptual, Saturation, Relative, and Absolute Colorimetric.</li>
+      </ul>
+    </div>
+  </div>
+  
+  <script>
+    // Tab switching functionality
+    const tabs = document.querySelectorAll('.tab');
+    const sections = document.querySelectorAll('.section');
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        sections.forEach(section => section.classList.remove('active'));
+        document.getElementById(tab.getAttribute('data-target')).classList.add('active');
+      });
+    });
+    
+    // Toggle answer function for study cards
+    function toggleAnswer(button) {
+      const answerDiv = button.nextElementSibling;
+      answerDiv.style.display = (answerDiv.style.display === "block") ? "none" : "block";
+    }
+    
+    // Quiz mode functionality with 50 unique quiz questions
+    const quizData = [
+      { question: "1. What does ICC stand for in color management?", options: ["International Color Consortium", "Image Color Calibration", "Integrated Color Control", "Individual Color Chart"], correct: 0, explanation: "ICC stands for International Color Consortium, which establishes standards for device profiles." },
+      { question: "2. Which color space is most commonly used for web images?", options: ["Adobe RGB", "sRGB", "ProPhoto RGB", "CMYK"], correct: 1, explanation: "sRGB is the standard color space for web images due to its compatibility and widespread support." },
+      { question: "3. What is the purpose of a capture ICC profile?", options: ["To modify image output", "To characterize how a device captures color", "To calibrate monitor brightness", "To adjust ambient lighting"], correct: 1, explanation: "A capture ICC profile characterizes the color response of a camera or scanner, ensuring accurate reproduction." },
+      { question: "4. In CIELAB color space, what does L* represent?", options: ["Hue", "Lightness", "Saturation", "Chromaticity"], correct: 1, explanation: "L* represents the lightness component in the CIELAB color space." },
+      { question: "5. Which rendering intent compresses colors to preserve overall visual relationships?", options: ["Relative Colorimetric", "Absolute Colorimetric", "Perceptual", "Saturation"], correct: 2, explanation: "Perceptual rendering intent compresses colors to maintain the overall appearance of the image." },
+      { question: "6. What does the $$ \\Delta E $$ metric quantify?", options: ["Brightness difference", "Color difference", "Saturation difference", "Hue difference"], correct: 1, explanation: "$$ \\Delta E $$ quantifies the perceptual difference between two colors in CIELAB space." },
+      { question: "7. What is the primary purpose of soft-proofing?", options: ["Enhance resolution", "Simulate printed output on screen", "Compress file size", "Increase color saturation"], correct: 1, explanation: "Soft-proofing simulates the final print output, allowing adjustments before actual printing." },
+      { question: "8. Which display technology uses self-emissive pixels?", options: ["LCD", "CRT", "OLED", "Plasma"], correct: 2, explanation: "OLED displays have self-emissive pixels, resulting in deeper blacks and richer colors." },
+      { question: "9. Which color space generally has the widest gamut?", options: ["sRGB", "Adobe RGB", "ProPhoto RGB", "CMYK"], correct: 2, explanation: "ProPhoto RGB encompasses the widest gamut, preserving the most color information." },
+      { question: "10. What is the main purpose of monitor calibration?", options: ["Adjust resolution", "Ensure accurate color reproduction", "Improve contrast ratio", "Reduce glare"], correct: 1, explanation: "Monitor calibration ensures that a display reproduces colors accurately." },
+      { question: "11. Which device measures the spectral power distribution of light?", options: ["Colorimeter", "Spectrophotometer", "Light Meter", "Photometer"], correct: 1, explanation: "A spectrophotometer measures the spectral power distribution, which is critical for accurate color analysis." },
+      { question: "12. What do chromaticity coordinates (x, y) represent?", options: ["Absolute brightness", "Hue and saturation independent of brightness", "Color temperature", "Color contrast"], correct: 1, explanation: "Chromaticity coordinates represent hue and saturation independent of luminance." },
+      { question: "13. Which equation correctly defines the x chromaticity coordinate?", options: ["x = X / (X+Y+Z)", "x = (X+Y)/Z", "x = Y/(X+Y+Z)", "x = Z/(X+Y+Z)"], correct: 0, explanation: "x is defined as X divided by the sum (X+Y+Z)." },
+      { question: "14. What is the significance of the hue angle in CIELAB?", options: ["Indicates brightness", "Specifies position around the neutral axis", "Measures saturation", "Quantifies color difference"], correct: 1, explanation: "The hue angle indicates the color's position on the a*-b* plane relative to the neutral axis." },
+      { question: "15. Which rendering intent does not preserve the white point?", options: ["Relative Colorimetric", "Absolute Colorimetric", "Perceptual", "Saturation"], correct: 2, explanation: "Perceptual rendering intent adjusts all colors, not preserving the exact white point." },
+      { question: "16. What does an input ICC profile primarily define?", options: ["Display brightness", "Color capture accuracy", "Printing resolution", "Viewing angle"], correct: 1, explanation: "It characterizes how a device, like a scanner or camera, captures color." },
+      { question: "17. What does CIELAB stand for?", options: ["Commission Internationale de l'Éclairage LAB", "Color Index of Electronic LABoratories", "Calibrated Imaging Electronic LAB", "CIE Luminance, a*, b*"], correct: 0, explanation: "CIELAB stands for Commission Internationale de l'Éclairage LAB." },
+      { question: "18. Why is a black background used in digital color presentations?", options: ["Reduces energy consumption", "Enhances contrast and color perception", "Standard in all devices", "Minimizes eye strain"], correct: 1, explanation: "A black background enhances contrast, making subtle color differences more noticeable." },
+      { question: "19. What is the main difference between input and output profiles?", options: ["Input corrects exposure; output adjusts saturation", "Input describes color capture; output describes reproduction", "Input for monitors; output for printers", "No significant difference"], correct: 1, explanation: "Input profiles describe how colors are captured, while output profiles define how they are reproduced." },
+      { question: "20. What is critical in maintaining an effective color management workflow?", options: ["File size", "Color space consistency", "Camera megapixels", "Monitor resolution"], correct: 1, explanation: "Consistency in color space across devices is essential for accurate color reproduction." },
+      { question: "21. Which color space is typically used for web content?", options: ["ProPhoto RGB", "Adobe RGB", "sRGB", "CMYK"], correct: 2, explanation: "sRGB is the standard for web content due to its widespread compatibility." },
+      { question: "22. What is the purpose of MathJax on this site?", options: ["Enable interactive diagrams", "Render equations legibly", "Create responsive design", "Enhance accessibility"], correct: 1, explanation: "MathJax renders mathematical equations clearly on the webpage." },
+      { question: "23. What does 'color conversion' refer to in this context?", options: ["Sharpening an image", "Mapping device-dependent colors to a device-independent space", "Profile assignment", "Calibration"], correct: 1, explanation: "Color conversion maps device-dependent color data to a standardized, device-independent color space." },
+      { question: "24. What does the constant 'k' in tristimulus equations represent?", options: ["A scaling factor for normalization", "Spectral sensitivity", "Wavelength increment", "Total energy"], correct: 0, explanation: "The constant k normalizes the tristimulus values in the equations." },
+      { question: "25. Which equation correctly defines the tristimulus value Y?", options: ["Y = k ∑ S(λ)R(λ)ȳ(λ)Δλ", "Y = k ∑ S(λ)R(λ)x̄(λ)Δλ", "Y = k ∑ S(λ)R(λ)z̄(λ)Δλ", "Y = k ∑ S(λ)R(λ)Δλ"], correct: 0, explanation: "Y is calculated using the ȳ(λ) color matching function." },
+      { question: "26. Which display technology typically offers the widest color gamut?", options: ["CRT", "LCD", "OLED", "None of the above"], correct: 2, explanation: "OLED displays generally offer the widest gamut due to their self-emissive properties." },
+      { question: "27. What is the primary benefit of using an input profile for scanning?", options: ["Enhances resolution", "Ensures scanned image colors match the original", "Reduces file size", "Speeds up scanning"], correct: 1, explanation: "An input profile ensures that the scanner reproduces the original colors accurately." },
+      { question: "28. Which measurement is crucial for understanding a light source's spectral distribution?", options: ["Chromaticity coordinates", "Spectral power distribution", "CIELAB values", "Hue angle"], correct: 1, explanation: "The spectral power distribution is key to understanding how a light source emits energy at various wavelengths." },
+      { question: "29. What is the role of soft-proofing in a color-managed workflow?", options: ["Permanently alters the image", "Simulates final printed output", "Enhances dynamic range", "Converts RGB to CMYK"], correct: 1, explanation: "Soft-proofing simulates how the final printed output will appear, allowing for necessary adjustments beforehand." },
+      { question: "30. How does converting an image to sRGB affect its gamut?", options: ["Expands the gamut", "Reduces the gamut", "No effect", "Converts image to grayscale"], correct: 1, explanation: "Converting to sRGB reduces the gamut by mapping a wider range of colors into a smaller space." },
+      { question: "31. What is meant by a 'device-independent color space'?", options: ["A color space consistent across devices", "Used exclusively for printing", "Has unlimited gamut", "A proprietary color space"], correct: 0, explanation: "A device-independent color space maintains consistent color reproduction regardless of the device used." },
+      { question: "32. Which component adjusts colors based on ambient light in a color management system?", options: ["Input profile", "Output profile", "Viewing conditions", "Calibration target"], correct: 2, explanation: "Ambient light (viewing conditions) is critical for accurate color perception and must be considered in color management." },
+      { question: "33. What is the main objective of using rendering intents during color conversion?", options: ["Sharpen the image", "Manage out-of-gamut colors", "Increase contrast", "Adjust brightness"], correct: 1, explanation: "Rendering intents manage how colors outside the target gamut are handled during conversion." },
+      { question: "34. Which of the following is NOT typically a component of a color management workflow?", options: ["Capture device calibration", "Profile assignment", "File compression", "Soft-proofing"], correct: 2, explanation: "File compression is not a typical component of color management." },
+      { question: "35. Why is the $$ \\Delta E $$ value important in quality control?", options: ["Measures file size", "Quantifies perceptual color differences", "Adjusts exposure", "Calibrates monitor brightness"], correct: 1, explanation: "$$ \\Delta E $$ quantifies the perceptual difference between two colors, which is essential for quality control in color reproduction." },
+      { question: "36. What does an ICC profile for a scanner do?", options: ["Adjusts screen resolution", "Characterizes how the scanner reproduces colors", "Calibrates the printer", "Optimizes ambient lighting"], correct: 1, explanation: "A scanner ICC profile characterizes the color response of the scanner to ensure accurate reproduction." },
+      { question: "37. Which of the following best describes CIELAB color space?", options: ["A perceptually uniform space", "A device-dependent space", "A CMYK variant", "A variant of RGB"], correct: 0, explanation: "CIELAB is designed to be perceptually uniform, meaning equal distances in the space correspond to equal perceived color differences." },
+      { question: "38. Which equation is used to compute the normalization constant k in tristimulus calculations?", options: ["k = 100 / \\(\\sum S(λ)ȳ(λ)\\Deltaλ\\)", "k = \\(\\sum S(λ)R(λ)\\Deltaλ\\)", "k = X+Y+Z", "k = 100 / (X+Y+Z)"], correct: 0, explanation: "k is computed as 100 divided by the sum of S(λ)ȳ(λ)Δλ." },
+      { question: "39. In color management, what is a gamut?", options: ["A measure of brightness", "The range of reproducible colors", "A type of ICC profile", "An image file format"], correct: 1, explanation: "A gamut is the range of colors that a device or color space can reproduce." },
+      { question: "40. Which screen technology uses self-emissive pixels?", options: ["LCD", "CRT", "OLED", "Plasma"], correct: 2, explanation: "OLED screens are self-emissive, meaning each pixel emits its own light." },
+      { question: "41. What is the main advantage of using an output ICC profile?", options: ["Enhances scanning", "Defines how colors are rendered on output devices", "Increases file resolution", "Modifies ambient lighting"], correct: 1, explanation: "An output ICC profile defines how an output device reproduces color, ensuring accurate prints or displays." },
+      { question: "42. In CIELAB, which parameter represents the blue-yellow axis?", options: ["L*", "a*", "b*", "ΔE"], correct: 2, explanation: "b* represents the blue-yellow axis in CIELAB." },
+      { question: "43. Which tool is commonly used for monitor calibration?", options: ["Spectrophotometer", "Colorimeter", "Photometer", "Tachometer"], correct: 1, explanation: "A colorimeter is commonly used to calibrate monitors by adjusting brightness and color balance." },
+      { question: "44. Why is a calibrated viewing environment important in color-critical work?", options: ["Improves network speed", "Ensures consistent and accurate color judgments", "Enhances resolution", "Reduces file size"], correct: 1, explanation: "A calibrated viewing environment ensures that color evaluations are consistent and reliable." },
+      { question: "45. Which best describes the role of rendering intents?", options: ["Determine handling of out-of-gamut colors", "Improve image sharpness", "Adjust resolution", "Optimize file storage"], correct: 0, explanation: "Rendering intents decide how colors outside the target gamut are managed during conversion." },
+      { question: "46. Which technology is known for high contrast ratios and deep blacks?", options: ["CRT", "LCD", "OLED", "LED"], correct: 2, explanation: "OLED technology is renowned for its high contrast and deep black levels." },
+      { question: "47. In digital color management, what does 'profile assignment' do?", options: ["Permanently alters the image", "Instructs software how to interpret color data", "Compresses the image", "Increases saturation"], correct: 1, explanation: "Profile assignment informs the software how to interpret the color data without changing the actual pixel values." },
+      { question: "48. What is the purpose of including diagrams and flowcharts in this study guide?", options: ["Provide visual summaries of workflows", "Decorate the webpage", "Serve as interactive quizzes", "Replace text"], correct: 0, explanation: "Diagrams and flowcharts visually summarize complex processes, aiding comprehension." },
+      { question: "49. Which measurement unit is typically used to express luminance in color management?", options: ["Kelvin", "Lux", "Candela per square meter", "Lumens"], correct: 2, explanation: "Luminance is typically expressed in candelas per square meter (cd/m²)." },
+      { question: "50. What is the overall goal of a robust digital color management workflow?", options: ["To ensure consistent, accurate color reproduction across devices", "Reduce file sizes", "Increase resolution", "Automate editing"], correct: 0, explanation: "The goal is to maintain consistent and accurate color reproduction from capture to output." }
+    ];
+    
+    // Shuffle quizData array to randomize question order
+    quizData.sort(() => Math.random() - 0.5);
+    
+    let currentQuestionIndex = 0;
+    
+    function displayQuestion() {
+      const questionDiv = document.getElementById('quizQuestion');
+      const optionsDiv = document.getElementById('quizOptions');
+      questionDiv.innerHTML = "<h3>" + quizData[currentQuestionIndex].question + "</h3>";
+      optionsDiv.innerHTML = "";
+      quizData[currentQuestionIndex].options.forEach((option, index) => {
+        const optionDiv = document.createElement("div");
+        optionDiv.className = "option";
+        optionDiv.innerHTML = "<input type='radio' name='option' value='" + index + "'> " + option;
+        optionDiv.addEventListener("click", function() {
+          document.querySelectorAll(".option").forEach(opt => opt.classList.remove("correct", "incorrect"));
+          if (index === quizData[currentQuestionIndex].correct) {
+            optionDiv.classList.add("correct");
+          } else {
+            optionDiv.classList.add("incorrect");
+          }
+        });
+        optionsDiv.appendChild(optionDiv);
+      });
+    }
+    
+    function revealAnswer() {
+      alert("Explanation: " + quizData[currentQuestionIndex].explanation);
+    }
+    
+    function nextQuestion() {
+      currentQuestionIndex = (currentQuestionIndex + 1) % quizData.length;
+      displayQuestion();
+    }
+    
+    function skipQuestion() {
+      nextQuestion();
+    }
+    
+    // Initialize quiz mode when its tab is clicked
+    document.querySelector('.tab[data-target="quizMode"]').addEventListener('click', displayQuestion);
+  </script>
+</body>
+</html>
